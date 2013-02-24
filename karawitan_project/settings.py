@@ -154,3 +154,36 @@ LOGGING = {
         },
     }
 }
+
+
+"""
+You need the ``BASE_PATH`` and ``TEST_DISCOVERY_ROOT`` settings in order for
+this test runner to work.
+
+``BASE_PATH`` should be the directory containing your top-level package(s); in
+other words, the directory that should be on ``sys.path`` for your code to
+import. This is the directory containing ``manage.py`` in the new Django 1.4
+project layout.
+
+``TEST_DISCOVERY_ROOT`` should be the root directory to discover tests
+within. You could make this the same as ``BASE_PATH`` if you want tests to be
+discovered anywhere in your project. If you want tests to only be discovered
+within, say, a top-level ``tests`` directory, you'd set ``TEST_DISCOVERY_ROOT``
+as shown below.
+
+And you need to point the ``TEST_RUNNER`` setting to the ``DiscoveryRunner``
+class above.
+
+"""
+import os.path
+import pdb; pdb.set_trace( )
+# This is correct for the Django 1.4-style project layout; for the old-style
+# project layout with ``settings.py`` and ``manage.py`` in the same directory,
+# you'd want to only call ``os.path.dirname`` once.
+BASE_PATH = os.path.dirname(os.path.dirname(__file__))
+
+# This would be if you put all your tests within a top-level "tests" package.
+TEST_DISCOVERY_ROOT = os.path.join(BASE_PATH, "tests")
+
+# This assumes you place the above ``DiscoveryRunner`` in ``tests/runner.py``.
+TEST_RUNNER = "tests.runner.DiscoveryRunner"
