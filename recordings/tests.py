@@ -4,23 +4,16 @@ when you run "manage.py test".
 
 Replace this with more appropriate tests for your application.
 """
-
-from django.test import TestCase
-
-
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
-        """
-        Tests that 1 + 1 always equals 2.
-        """
-        self.assertEqual(1 + 1, 2)
-
-
+# from django.test import TestCase
 from django_webtest import WebTest
 
 
 class FunctionalTestCase(WebTest):
 
-    def test_artists_listing_exists(self):
-        index = self.app.get('/pengrawit')
-        assert 'Pengrawit' in index
+    def test_admin_enabled(self):
+        response = self.app.get('/admin')
+        self.assertEqual(u'', response.text)
+
+    def test_musician_listing_exists(self):
+        index = self.app.get('/musicians')
+        assert 'Musicians' in index
