@@ -176,14 +176,15 @@ class above.
 
 """
 import os.path
-import pdb; pdb.set_trace( )
 # This is correct for the Django 1.4-style project layout; for the old-style
 # project layout with ``settings.py`` and ``manage.py`` in the same directory,
 # you'd want to only call ``os.path.dirname`` once.
 BASE_PATH = os.path.dirname(os.path.dirname(__file__))
 
 # This would be if you put all your tests within a top-level "tests" package.
-TEST_DISCOVERY_ROOT = os.path.join(BASE_PATH, "tests")
+#TEST_DISCOVERY_ROOT = os.path.join(BASE_PATH, "tests")
+TEST_DISCOVERY_ROOT = BASE_PATH
 
 # This assumes you place the above ``DiscoveryRunner`` in ``tests/runner.py``.
-TEST_RUNNER = "tests.runner.DiscoveryRunner"
+#TEST_RUNNER = "tests.runner.DiscoveryRunner"
+TEST_RUNNER = "runner.DiscoveryRunner"
